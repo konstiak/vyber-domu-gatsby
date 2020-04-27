@@ -20,17 +20,37 @@ const Layout = ({ children }) => {
         siteMetadata {
           title
         }
+      },
+      allMarkdownRemark (sort: {fields: fields___slug order: ASC}) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+            link
+            builtArea
+            usedArea
+            livingArea
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
       }
+    }
     }
   `);
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={data.site.siteMetadata.title} markdowns={data.allMarkdownRemark} />
       <main>
         <Container className="p-3">{children}</Container>
       </main>
-      <footer className="footer mt-auto py-3 bg-dark text-white text-center">
+      <footer className="footer mt-auto py-3 text-center">
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
