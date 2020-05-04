@@ -22,7 +22,21 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: require.resolve(`../gatsby-remark-github-crud`),
+            options: {
+              github: 'https://github.com/konstiak/vyber-domu-gatsby',
+              branch: 'master',
+              basedir: __dirname,
+            }
+          }
+        ]
+      }      
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

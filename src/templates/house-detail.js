@@ -8,13 +8,25 @@ import { Jumbotron, Table, Row, Col, Container } from "react-bootstrap"
 export default ({ data }) => {
   const params = data.markdownRemark.frontmatter
   const html = data.markdownRemark.html
-  const fullSize = data.allFile.edges.map((edge) => edge.node.childImageSharp.fluid.src)
-  const thumbs = data.allFile.edges.map((edge) => edge.node.childImageSharp.fluid)
+  const fullSize = data.images.edges.map((edge) => edge.node.childImageSharp.fluid.src)
+  const thumbs = data.images.edges.map((edge) => edge.node.childImageSharp.fluid)
   return (
     <Layout>
       <div>
-        <h1>{params.title}</h1>
-        <Gallery images={fullSize} thumbs={thumbs} />
+        <Container>
+          <Row>
+            <Col><h1>{params.title}</h1></Col>
+            <Col>
+            <p className="text-right"><a href={data.markdownRemark.fields.editLink} target={"_blank"} rel="noopener noreferrer">Edit </a>
+            | <a href={data.markdownRemark.fields.deleteLink} target={"_blank"} rel="noopener noreferrer"> Delete</a>
+            </p>
+            </Col>
+          </Row>
+        </Container>
+        
+        
+        
+        <Gallery images={fullSize} thumbs={thumbs} imgClass="rounded" />
         <Container className="mt-5">
           <Row>
             <Col>
@@ -50,8 +62,12 @@ export const query = graphql`
         livingArea
         builtArea
       }
+      fields {
+        deleteLink
+        editLink
+      }
     }
-    allFile (filter: {
+    images: allFile (filter: {
       relativeDirectory: {regex: $slug}
       extension: { regex: "/(jpg)|(png)|(jpeg)/" }
     }) {
@@ -59,7 +75,7 @@ export const query = graphql`
         node {
           name
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 1800 quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
