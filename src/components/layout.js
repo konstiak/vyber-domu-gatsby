@@ -21,32 +21,87 @@ const Layout = ({ children }) => {
           title
         }
       },
-      allMarkdownRemark (sort: {fields: fields___slug order: ASC}) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-            link
-            builtArea
-            usedArea
-            livingArea
+      houses: allMarkdownRemark (
+        sort: {fields: fields___slug order: ASC},
+        filter: {
+          fields: {
+            slug: {regex: "/\/houses*/"}
           }
-          fields {
-            slug
+        }) {
+                totalCount
+                edges {
+                  node {
+                    id
+                    frontmatter {
+                      title
+                      date(formatString: "DD MMMM, YYYY")
+                      link
+                      builtArea
+                      usedArea
+                      livingArea
+                    }
+                    fields {
+                      slug
+                    }
+                    excerpt
+                  }
+                }
+              },
+    studies: allMarkdownRemark (
+        sort: {fields: fields___slug order: ASC},
+        filter: {
+          fields: {
+            slug: {regex: "/\/studies*/"}
           }
-          excerpt
-        }
-      }
-    }
+        }) {
+                totalCount
+                edges {
+                  node {
+                    id
+                    frontmatter {
+                      title
+                      date(formatString: "DD MMMM, YYYY")
+                      link
+                      builtArea
+                      usedArea
+                      livingArea
+                    }
+                    fields {
+                      slug
+                    }
+                    excerpt
+                  }
+                }
+              }
+    ideas: allMarkdownRemark (
+        sort: {fields: fields___slug order: ASC},
+        filter: {
+          fields: {
+            slug: {regex: "/\/ideas*/"}
+          }
+        }) {
+                totalCount
+                edges {
+                  node {
+                    id
+                    frontmatter {
+                      title
+                      date(formatString: "DD MMMM, YYYY")
+                      link
+                    }
+                    fields {
+                      slug
+                    }
+                    excerpt
+                  }
+                }
+              }
     }
   `);
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} markdowns={data.allMarkdownRemark} />
+      <Header siteTitle={data.site.siteMetadata.title} data={data} />
       <main>
         <Container className="p-3">{children}</Container>
       </main>
