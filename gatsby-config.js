@@ -27,7 +27,7 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: require.resolve(`../gatsby-remark-github-crud`),
+            resolve: `gatsby-remark-github-crud`,
             options: {
               github: 'https://github.com/konstiak/vyber-domu-gatsby',
               branch: 'master',
