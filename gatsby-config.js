@@ -40,7 +40,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `vyber-domu-konstiakovci`,
+        name: `Výber domu Konštiakovcov`,
         short_name: `Výber domu`,
         start_url: `/`,
         background_color: `#60bd90`,
