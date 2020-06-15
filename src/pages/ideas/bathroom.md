@@ -7,3 +7,4 @@ livingArea:
 ---
 
 ##### Poznámky:
+Drevo s bielou
