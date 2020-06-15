@@ -19,6 +19,7 @@ export default ({ data }) => {
             <Col>
             <p className="text-right"><a href={data.markdownRemark.fields.editLink} target={"_blank"} rel="noopener noreferrer">Edit </a>
             | <a href={data.markdownRemark.fields.deleteLink} target={"_blank"} rel="noopener noreferrer"> Delete</a>
+            | <a href={data.markdownRemark.fields.uploadImageLink} target={"_blank"} rel="noopener noreferrer"> Upload Image</a>
             </p>
             </Col>
           </Row>
@@ -65,6 +66,7 @@ export const query = graphql`
       fields {
         deleteLink
         editLink
+        uploadImageLink
       }
     }
     images: allFile (filter: {

@@ -20,6 +20,7 @@ exports.onCreateNode = ({
   if (node.internal.type === `MarkdownRemark`) {
     if (node.fileAbsolutePath != null) {
       const relativePath = `${node.fileAbsolutePath}`.replace(basedir + "/", "");
+      const imagesFolderPath = `${relativePath}`.replace("pages", "images").replace(".md", "");
       createNodeField({
         node,
         name: 'editLink',
@@ -29,6 +30,11 @@ exports.onCreateNode = ({
         node,
         name: 'deleteLink',
         value: (0, _urlJoin.default)(github, `delete`, branch, relativePath)
+      });
+      createNodeField({
+        node,
+        name: 'uploadImageLink',
+        value: (0, _urlJoin.default)(github, `upload`, branch, imagesFolderPath)
       });
     }
   }
