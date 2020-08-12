@@ -43,8 +43,8 @@ module.exports = {
         name: `Výber domu Konštiakovcov`,
         short_name: `Výber domu`,
         start_url: `/`,
-        background_color: `#60bd90`,
-        theme_color: `#60bd90`,
+        background_color: `#1DB954`,
+        theme_color: `#1DB954`,
         display: `minimal-ui`,
         icon: `src/images/simple-house.png`, // This path is relative to the root of the site.
       },
